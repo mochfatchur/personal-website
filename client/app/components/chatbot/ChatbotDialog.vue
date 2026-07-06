@@ -10,17 +10,22 @@ const emit = defineEmits<{
 
 const { 
   messages,
-  addUserMessage
+  sendMessage,
+  loading
 } = useChat();
 
-const message = ref("");
+const input = ref('')
 
-const submit = () => {
-  if (!message.value.trim()) return
+const submit = async () => {
 
-  addUserMessage(message.value)
+    if (!input.value.trim())
+        return
 
-  message.value = ''
+    await sendMessage(
+        input.value
+    )
+
+    input.value = ''
 }
 
 </script>
@@ -85,7 +90,7 @@ const submit = () => {
         @submit.prevent="submit"
       >
         <input
-          v-model="message"
+          v-model="input"
           placeholder="Type your message..."
           class="flex-1 rounded-full border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none"
         >
