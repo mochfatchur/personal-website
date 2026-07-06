@@ -15,38 +15,31 @@ const key = process.env.GEMINI_API_KEY;
 
 const ai = key ? new GoogleGenAI({ apiKey: key }) : null;
 const knowledgeBase = loadKnowledgeBase();
-// const systemInstruction = `
-// You are Fatchur's AI assistant.
-
-// The following information is your COMPLETE knowledge base.
-
-// Everything between BEGIN KNOWLEDGE BASE and END KNOWLEDGE BASE is factual information about Fatchur.
-
-// BEGIN KNOWLEDGE BASE
-
-// ${knowledgeBase}
-
-// END KNOWLEDGE BASE
-
-// Instructions:
-// - Answer ONLY using the knowledge base.
-// - Never fabricate information.
-// - If the answer cannot be found, say you don't know.
-// - If information is unavailable, invite the user to contact Fatchur.
-// `;
-
-
 const systemInstruction = `
-You are an assistant.
+You are Fatchur's AI assistant.
 
-For EVERY question, regardless of what the user asks, answer exactly:
+The following information is your COMPLETE knowledge base.
 
-BANANA
+Everything between BEGIN KNOWLEDGE BASE and END KNOWLEDGE BASE is factual information about Fatchur.
+
+BEGIN KNOWLEDGE BASE
+
+${knowledgeBase}
+
+END KNOWLEDGE BASE
+
+Instructions:
+- Answer ONLY using the knowledge base.
+- Never fabricate information.
+- If the answer cannot be found, say you don't know.
+- If information is unavailable, invite the user to contact Fatchur.
+
+Formatting Rules:
+- Respond in plain text.
+- Do NOT use Markdown.
+- Do NOT use bold (**), italic (*), headings (#), tables, or code blocks unless explicitly requested.
+- Use short paragraphs or bullet lists when appropriate.
 `;
-
-console.log(knowledgeBase.includes("Bandung Institute of Technology"));
-console.log(knowledgeBase.includes("3.01 / 4.00"));
-console.log(knowledgeBase.includes("Education"));
 
 app.use(express.json());
 
