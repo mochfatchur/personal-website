@@ -178,6 +178,6 @@ app.post('/generate-from-audio', upload.single("audio"), async (req, res) => {
 
 
 
-const PORT = 3002;
+const PORT = process.env.PORT ?? 3002;
 
 app.listen(PORT, () => console.log(`Server ready on http://localhost:${PORT}`));
