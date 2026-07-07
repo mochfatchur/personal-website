@@ -73,7 +73,7 @@ const submit = async () => {
             : 'justify-start'"
         >
           <div
-            class="max-w-[80%] rounded-2xl px-4 py-3"
+            class="max-w-[80%] rounded-2xl px-4 py-3  whitespace-pre-wrap"
             :class="message.role === 'user'
               ? 'bg-cyan-500 text-white'
               : 'bg-slate-700 text-white'"
